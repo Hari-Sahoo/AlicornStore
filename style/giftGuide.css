@@ -1,0 +1,46 @@
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+.gift-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 6% auto;
+}
+.gift-guide {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+.gift-category {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 250px;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+.gift-category:hover {
+    transform: translateY(-10px);
+}
+.gift-category img {
+    width: 100%;
+    height: auto;
+}
+.gift-category .content {
+    padding: 15px;
+    text-align: center;
+}
+.gift-category h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #007bff;
+}
+.gift-category p {
+    font-size: 1em;
+    color: #555;
+    margin: 0;
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Products</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            width: 100%;
+            /* max-width: 600px; */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="dashboard.html" class="logo">Alicorn </a>
+        <a href="#">All Products</a>
+        <a href="#">Add Product</a>
+        <a href="#">Search</a>
+        <a href="#">Log Out</a>
+    </div>
+
+<div>
+    <h2>Add New Products</h2>
+</div>
+    <div class="container">
+        <form action="http://localhost:9090/product" method="POST" enctype="multipart/form-data">
+            <label for="productId">Product ID:</label>
+            <input type="text" id="productId" name="productId" required>
+    
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" required>
+    
+            <label for="categoryName">Category Name:</label>
+            <input type="text" id="categoryName" name="categoryName" required>
+    
+            <label for="details">Details:</label>
+            <input type="text" id="details" name="details" required>
+    
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+    
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" min="0" step="0.01" required>
+    
+            <label for="discount">Discount:</label>
+            <input type="number" id="discount" name="discount" min="0" max="100" step="1" required>
+    
+            <label for="image">Upload Image:</label>
+            <input type="file" id="image" name="image" accept="image/png, image/jpeg" required>
+    
+            <label for="availableQuantity">Available Quantity:</label>
+            <input type="number" id="availableQuantity" name="availableQuantity" min="0" required>
+    
+            <input type="submit">
+        </form>
+    </div>
+
+
+    <script>
+
+function postData(){
+    var pId = document.getElementById("productId").value
+    var name = document.getElementById("productName").value
+    var category = document.getElementById("categoryName").value
+    var details = document.getElementById("details").value
+    var discription = document.getElementById("description").value
+    var price = document.getElementById("price").value
+    var discount = document.getElementById("discount").value
+    var image = document.getElementById("image").value
+    var quantity = document.getElementById("availableQuantity").value
+
+    var data = {
+        "producId": pId,
+        "productName": name,
+        "category": category,
+        "details": details,
+        "discription": discription,
+        "price": price,
+        "discount": discount,
+        "quantity": quantity
+    }
+    url = "http://localhost:9090/product"
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(res => {
+        console.log(res)
+
+    })
+}
+
+
+    </script>
+</body>
+</html>

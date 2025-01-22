@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Add Products</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            width: 100%;
+            /* max-width: 600px; */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="dashboard.html" class="logo">Alicorn </a>
+        <a href="#">All Products</a>
+        <a href="#">Add Product</a>
+        <a href="#">Search</a>
+        <a href="#">Log Out</a>
+    </div>
+
+<div>
+    <h2>Update   Products</h2>
+</div>
+    <div class="container">
+        <form>
+            <label for="productId">Product ID:</label>
+            <input type="text" id="productId" name="productId" required>
+    
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" required>
+    
+            <label for="categoryName">Category Name:</label>
+            <input type="text" id="categoryName" name="categoryName" required>
+    
+            <label for="details">Details:</label>
+            <input type="text" id="details" name="details">
+    
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4"></textarea>
+    
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" min="0" step="0.01" required>
+    
+            <label for="discount">Discount:</label>
+            <input type="number" id="discount" name="discount" min="0" max="100" step="1">
+    
+            <label for="image">Upload Image:</label>
+            <input type="file" id="image" name="image">
+    
+            <label for="availableQuantity">Available Quantity:</label>
+            <input type="number" id="availableQuantity" name="availableQuantity" min="0" required>
+    
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+
+        const urlParms = new URLSearchParams(window.location.search);
+        const id = urlParms.get('id');
+
+        url = `${id}`
+
+        fetch(url)
+        .then(res => res.json())
+        .then(res => {
+            document.getElementById("productId").value= res['producId']
+            document.getElementById("productName").value= res['productName']
+            document.getElementById("categoryName").value= res['category']
+            document.getElementById("details").value= res['details']
+            document.getElementById("description").value= res['discription']
+            document.getElementById("price").value= res['price']
+            document.getElementById("price").value= res['discount']
+            document.getElementById("availableQuantity").value= res['quantity']
+        })
+
+        function putData(){
+
+            date = {
+                "id": id,
+                "productName": document.getElementById("productName").value,
+                "categoryName": document.getElementById("category").value,
+                "details": document.getElementById("details").value,
+                "description": document.getElementById("discription").value,
+                "price": document.getElementById("price").value,
+                "price": document.getElementById("discount").value,
+                "availableQuantity": document.getElementById("quantity").value,
+            }
+            fetch(url, {
+                method: "PUT",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(res => {
+                
+            })
+        }
+
+    </script>
+</body>
+</html>

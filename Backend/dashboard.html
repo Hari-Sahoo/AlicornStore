@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+   
+</style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="dashboard.html" class="logo">Alicorn </a>
+        <a href="dashboard.html">All Products</a>
+        <a href="addProducts.html">Add Product</a>
+        <a href="#">Search</a>
+        <a href="#">Log Out</a>
+    </div>
+    <div style="padding: 20px;">
+        <h2>Main Content Area</h2>
+        <p>This is the main content area. You can add your content here.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+<div class="container">
+    <div class="card">
+        <h2>Available Products</h2>
+        <ul id="Products">
+        </ul>
+    </div>
+    <div class="card">
+        <h2>Categories</h2>
+        <ul id="records">
+            <!-- <a href="products.html"></a> -->
+        </ul>
+    </div>
+    <div class="card">
+        <h2>Selling Products</h2>
+        <ul>
+            <li class="sell-product"><a href="orderdata.html">Product 1</a></li>
+            <li class="sell-product">Product 2</li>
+            <li class="sell-product">Product 3</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    fetch('http://localhost:9090/product')
+    .then(response => response.json())
+    .then(data => {
+        const categories = new Set();
+        data.forEach(product => {
+        categories.add(product.categoryName);
+        });
+
+        const categoryList = document.getElementById('records');
+        categories.forEach(categoryName => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `products.html?key=${categoryName}`;
+        // a.href = `products.html?key=${category}&value=${value}`;
+        a.textContent = categoryName;
+        li.appendChild(a);
+        categoryList.appendChild(li);
+        });
+    })
+    .catch(error => console.error('Error:', error));
+
+
+
+
+//   fetch('http://localhost:9090/product')
+//         .then(response => response.json())
+//         .then(data => {
+//             let categories = {};
+//             data.forEach(product => {
+//                 if (!categories[product.category]) {
+//                     categories[product.category] = 1;
+//                 } else {
+//                     categories[product.category]++;
+//                 }
+//             });
+
+//             let categoryListElement = document.getElementById('Products');
+//             for (let category in categories) {
+//                 let listItem = document.createElement('li');
+//                 let link = document.createElement('a');
+//                 link.href = `productdetails.html${category}`;
+//                 link.textContent = `${category}: (${categories})`;
+//                 listItem.appendChild(link);
+//                 categoryListElement.appendChild(listItem);
+//             }
+//         })
+//         .catch(error => console.error('Error fetching data:', error));
+
+
+
+
+        fetch('http://localhost:9090/product')
+      .then(response => response.json())
+      .then(data => {
+        let categories = {};
+        data.forEach(product => {
+          if (!categories[product.categoryName]) {
+            categories[product.categoryName] = 1;
+          } else {
+            categories[product.categoryName]++;
+          }
+        });
+
+        let categoryListElement = document.getElementById('Products');
+        for (let categoryName in categories) {
+          let listItem = document.createElement('li');
+          let link = document.createElement('a');
+          link.href = `productdetails.html?category=${categoryName}`;
+          link.textContent = `${categoryName}: ${categories[categoryName]}`;
+          listItem.appendChild(link);
+          categoryListElement.appendChild(listItem);
+        }
+      })
+      .catch(error => console.error('Error fetching data:', error));
+
+
+
+// fetch('http://localhost:9090/product')
+// .then(res => res.json())
+// .then(res => {
+//     output = ''
+
+//     for(let i=0; i<res.length; i++){
+//       output +=`  <li>
+//          <ol><a class="btn btn-info" href="productdetails.html?key=">${res[i]['category']}</a></ol>   
+//          </li>`
+//     }
+//     document.getElementById("records").innerHTML=output
+// })
+
+
+
+
+
+
+</script>
+</body>
+</html>
+
+
+

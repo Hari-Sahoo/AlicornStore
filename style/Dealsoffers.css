@@ -1,0 +1,63 @@
+.Deals-container {
+    width: 80%;
+    margin: 5% auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.deal-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    margin-bottom: 20px;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+.deal-card:hover {
+    transform: translateY(-5px);
+}
+.deal-card img {
+    width: 100%;
+    height: auto;
+}
+.deal-content {
+    padding: 15px;
+}
+.deal-content h3 {
+    margin: 10px 0;
+    font-size: 1.5em;
+}
+.deal-content p {
+    color: #777;
+    font-size: 1em;
+    margin: 10px 0;
+}
+.deal-content a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+.deal-content a:hover {
+    background-color: #555;
+}
+.title{
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; 
+    margin-top: 6% ;
+    text-align: center;
+}
+.title h1{
+ font-weight: 500;
+  margin-top: 20px;
+  color: black;
+  font-size: 50px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+}

@@ -1,0 +1,59 @@
+#productGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.productCard {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 23%;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.productCard:hover {
+    transform: translateY(-10px);
+}
+
+.productCard img {
+    width: 100%;
+    height: auto;
+}
+
+.productCard .content {
+    padding: 15px;
+}
+
+.productCard .content h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.productCard .content p {
+    font-size: 14px;
+    color: #777;
+}
+
+.productCard .content .price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .productCard {
+        width: 48%;
+    }
+}
+
+@media (max-width: 480px) {
+    .productCard {
+        width: 100%;
+    }
+}

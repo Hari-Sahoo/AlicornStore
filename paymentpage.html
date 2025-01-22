@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/payment.css">
+    <style>
+        #orderBtn {
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#orderBtn:hover {
+    background-color: #0056b3;
+}
+
+#popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease;
+}
+
+#popup.popup-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup-content {
+    position: relative;
+    background-color: #28a745;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    width: 300px;
+    height: 100px;
+    animation: popup-appear 0.5s ease;
+}
+
+.popup-content h2 {
+    margin-top: 0;
+}
+
+.popup-content p {
+    font-size: 16px;
+}
+
+#closePopup {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+@keyframes popup-appear {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+          <!-- <img src="logo.png" alt="Logo"> -->
+          <h3>Alicorn</h3>
+        </div>
+        <div class="search-bar">
+          <input type="text" placeholder="Search products...">
+          <button>Search</button>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a routerLink="/product" routerLinkActive="product">Products</a></li>
+            <li><a href="about">About Us</a></li>
+            <li><a href="contact">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <div class="container">
+        <div class="product-details">
+            <h2>Product Details</h2>
+            <div class="product-item">
+                <img id="image" src=" " alt="Product Image">
+                <h3 id="productName">Product Name</h3>
+                <p id="price">Price: $100.00</p>
+                <p id="taxAmount">Tax: $10.00</p>
+                <p>Shiping Amount:₹ 50</p>
+                <p id="final-price"><strong>Final Price: $110.00</strong></p>
+            </div>
+        </div>
+
+        <div class="payment-details">
+            <h2>Payment Details</h2>
+            <form action="http://localhost:9090/order" method="POST" enctype="multipart/form-data">
+            <!-- <form> -->
+                <div class="form-group">
+                    <label for="cardName">Cardholder Name</label>
+                    <input type="text" id="cardName" name="cardName"  required>
+                </div>
+
+                <div class="form-group">
+                  <label for="mobile">Mobile Number</label>
+                  <input type="num" id="mobile" name="mobile" max="10"  required>
+              </div>
+
+               <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address"  required>
+               </div>
+
+                <div class="form-group">
+                    <label for="cardNum">Card Number</label>
+                    <input type="num" id="cardNum" name="cardNum"  placeholder="1111-2222-3333-4444" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="expDate">Expiry Date</label>
+                    <input type="text" id="expDate" name="expDate" placeholder="MM/YY" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="123" required>
+                </div>
+
+                <!-- <button  onclick="postData()" class="btn"  id="pay">PAY</button> -->
+                <button class="btn"  id="pay">PAY</button>
+                <!-- <button type="submit">PAY</button> -->
+
+            </form>
+        </div>
+    </div>
+
+    <div id="popup" class="popup-hidden">
+        <div class="popup-content">
+            <span id="closePopup">&times;</span>
+            <h2>Your order is successful!</h2>
+            <p>Thank you for your purchase.</p>
+        </div>
+    </div>
+
+      <script>
+
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get('id');
+var productID;
+
+fetch(`http://localhost:9090/product/${id}`)
+.then(res => res.json())
+.then(res => {
+  document.getElementById("productName").innerHTML = res["productName"]
+  document.getElementById("price").innerHTML = "Product Price: ₹" + res["price"]
+  document.getElementById("image").src = res["image"]
+  productID = res["productId"]
+})
+
+function postData(){
+            var cardName = document.getElementById("cardName").value
+            var mobile = document.getElementById("mobile").value
+            var address = document.getElementById("address").value
+            var cardNum = document.getElementById("cardNum").value
+            var expDate = document.getElementById("expDate").value
+            var cvv = document.getElementById("cvv").value
+
+            var data = {
+                "cardName": cardName,
+                "mobile": mobile,
+                "address": address,
+                "cardNum": cardNum,
+                "expDate": expDate,
+                "cvv": cvv,
+                "productID": productID,
+                "payPrice": payPrice
+            }
+
+            fetch("http://localhost:9090/order", {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(res =>  {
+                console.log(res)
+            })
+           
+}
+
+
+
+
+const TAX_RATE = 0.10; 
+const shiping = 50;
+
+async function fetchProductById(productId) {
+    try {
+        const response = await fetch(`http://localhost:9090/product/${id}`); 
+        const product = await response.json();
+
+        if (product && product.price) {
+            const tax = calculateTax(product.price);
+            const finalPrice = calculatePriceWithTax(product.price);
+            displayProductInfo( product.price, finalPrice, tax);
+            updatePayButton(finalPrice);
+        } else {
+            displayError('Product not found.');
+        }
+    } catch (error) {
+        console.error('Error fetching product:', error);
+        displayError('Failed to fetch product.');
+        resetPayButton();
+    }
+}
+
+function calculatePriceWithTax(price) {
+    return price + shiping + (price * TAX_RATE);
+}
+function calculateTax(price) {
+    return price * TAX_RATE;
+}
+
+var payPrice;
+function displayProductInfo( originalPrice, finalPrice, tax) {
+    document.getElementById('taxAmount').innerHTML =`Tax:₹${tax.toFixed(2)}`
+    document.getElementById('final-price').innerHTML =`Final Price:₹${finalPrice.toFixed(2)}`
+    payPrice = `${finalPrice.toFixed(2)}`;
+}
+
+function displayError(message) {
+    const productInfoDiv = document.getElementById('product-info');
+    productInfoDiv.innerHTML = `<p style="color: red;">${message}</p>`;
+}
+
+function updatePayButton(finalPrice) {
+    const payButton = document.getElementById('pay');
+    payButton.innerHTML = `Pay ₹${finalPrice.toFixed(2)}`;
+    payButton.disabled = false;
+}
+
+function resetPayButton() {
+    const payButton = document.getElementById('pay');
+    payButton.innerHTML = `Pay $0.00`;
+    payButton.disabled = true;
+}
+
+fetchProductById();
+
+
+// const orderBtn = document.getElementById('orderBtn');
+// const popup = document.getElementById('popup');
+// const closePopup = document.getElementById('closePopup');
+
+// orderBtn.addEventListener('click', () => {
+//     popup.classList.add('popup-visible');
+// });
+
+// closePopup.addEventListener('click', () => {
+//     popup.classList.remove('popup-visible');
+// });
+
+// window.addEventListener('click', (event) => {
+//     if (event.target === popup) {
+//         popup.classList.remove('popup-visible');
+//     }
+// });
+
+      </script>
+</body>
+</html>

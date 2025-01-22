@@ -1,0 +1,86 @@
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+.lunch-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 6% auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.product-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.product-intro img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.product-intro h2 {
+    font-size: 2em;
+    margin: 0 0 10px;
+}
+.product-intro p {
+    font-size: 1.2em;
+    color: #555;
+}
+.features {
+    margin: 20px 0;
+}
+.features h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+.features ul {
+    list-style: none;
+    padding: 0;
+}
+.features li {
+    background-color: #e9ecef;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 1.1em;
+}
+.cta {
+    text-align: center;
+    margin-top: 30px;
+}
+.cta a {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    color: white;
+    background-color: #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+.cta a:hover {
+    background-color: #0056b3;
+}
+.centered-container {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically */
+    height: 50px;           /* Full viewport height */
+}
+
+.centered-title {
+    margin: 0;
+    font-size: 2em;
+    text-align: center;
+    font-weight: 500;
+  margin-top: 20px;
+  color: black;
+  font-size: 50px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+}

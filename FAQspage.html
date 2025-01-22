@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .faq-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .faq-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .faq-question {
+            cursor: pointer;
+            font-size: 1.2em;
+            color: #007bff;
+            margin: 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .faq-question:hover {
+            background-color: #f0f0f0;
+        }
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            font-size: 1em;
+            color: #555;
+        }
+        .faq-answer p {
+            margin: 0;
+        }
+        .title-container{
+            width: 100%;
+            max-width: 1200px;
+            margin: 6% auto;
+        }
+        .centered-title{
+            margin: 0;
+            font-size: 2em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+          <!-- <img src="logo.png" alt="Logo"> -->
+          <h3>Alicorn</h3>
+        </div>
+        <div class="search-bar">
+          <input type="text" placeholder="Search products...">
+          <button>Search</button>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a routerLink="/product" routerLinkActive="product">Products</a></li>
+            <li><a href="about">About Us</a></li>
+            <li><a href="contact">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+<div class="title-container">
+    <h1 class="centered-title">Frequently Asked Questions</h1>
+</div>
+
+
+<div class="faq-container">
+    <div class="faq-section">
+        <div class="faq-question">What is your return policy?</div>
+        <div class="faq-answer">
+            <p>Our return policy allows you to return products within 30 days of receipt for a full refund. Please ensure the items are in their original condition and packaging.</p>
+        </div>
+    </div>
+
+    <div class="faq-section">
+        <div class="faq-question">How do I track my order?</div>
+        <div class="faq-answer">
+            <p>Once your order has shipped, you will receive a tracking number via email. You can use this number to track your shipment on our website or the carrier's website.</p>
+        </div>
+    </div>
+
+    <div class="faq-section">
+        <div class="faq-question">Do you offer international shipping?</div>
+        <div class="faq-answer">
+            <p>Yes, we offer international shipping to most countries. Shipping costs and delivery times vary depending on the destination.</p>
+        </div>
+    </div>
+
+    <div class="faq-section">
+        <div class="faq-question">Can I change or cancel my order?</div>
+        <div class="faq-answer">
+            <p>Orders can be modified or canceled within 1 hour of placing them. After this time, the order may have already been processed or shipped, and changes may not be possible.</p>
+        </div>
+    </div>
+
+    <div class="faq-section">
+        <div class="faq-question">How can I contact customer support?</div>
+        <div class="faq-answer">
+            <p>You can contact our customer support team via email at support@example.com or by calling our hotline at (123) 456-7890. We are available Monday through Friday, 9 AM to 5 PM.</p>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <ul>
+          <li><a href="/terms">Terms and Conditions</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/shipping">Shipping Information</a></li>
+          <li><a href="/FAQspage.html">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="social-media">
+        <a href="#" class="social-icon"><i class="fa fa-facebook"></i></a>
+        <a href="#" class="social-icon"><i class="fa fa-twitter"></i></a>
+        <a href="#" class="social-icon"><i class="fa fa-instagram"></i></a>
+      </div>
+      <div class="newsletter">
+        <h3>Subscribe to our Newsletter</h3>
+        <form>
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </footer>
+
+<script>
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const answer = question.nextElementSibling;
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+            } else {
+                answer.style.display = 'block';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

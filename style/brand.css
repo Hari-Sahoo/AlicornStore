@@ -1,0 +1,100 @@
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+.brand-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 6% auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.brand-intro {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+.brand-intro img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.brand-intro h2 {
+    font-size: 2em;
+    margin: 0;
+}
+.brand-intro p {
+    font-size: 1.2em;
+    color: #555;
+}
+.featured-products {
+    margin: 20px 0;
+}
+.featured-products h3 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+.brand-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.brand-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+.brand-card:hover {
+    transform: translateY(-5px);
+}
+.brand-card img {
+    width: 100%;
+    height: auto;
+}
+.brand-card h4 {
+    margin: 10px 0;
+    font-size: 1.4em;
+}
+.brand-card p {
+    color: #777;
+    font-size: 1em;
+    margin: 0 0 10px;
+}
+.brand-card a {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+.brand-card a:hover {
+    background-color: #555;
+}
+.cta {
+    text-align: center;
+    margin-top: 30px;
+}
+.cta a {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+.cta a:hover {
+    background-color: #555;
+}
