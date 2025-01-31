@@ -8,6 +8,8 @@ mongoose.connect(datas, {})
 .then(()=> console.log("Connect sucessfully...."))
 .catch((error)=> console.log(error));
 
+
+
 const express = require("express");
 const app = express();
 app.use(express.json());
@@ -171,9 +173,9 @@ app.put("/product", async(req, res)=> {
   res.send(data);
 })
 
+const PORT = process.env.PORT || 9090;
 
 
-
-app.listen(9090, ()=> {
-  console.log("Listening 9090..... ")
+app.listen(PORT, ()=> {
+  console.log("Listening" + PORT)
 })

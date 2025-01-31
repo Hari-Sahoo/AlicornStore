@@ -1,5 +1,7 @@
+url = "https://alicorn.netlify.app/.netlify/functions/server/product"
+
 function getdata(){
-    fetch("http://localhost:9090/product")
+    fetch(url)
     .then(res => res.json())
     .then(res =>{
         output = ''

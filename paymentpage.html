@@ -118,7 +118,7 @@
 
         <div class="payment-details">
             <h2>Payment Details</h2>
-            <form action="http://localhost:9090/order" method="POST" enctype="multipart/form-data">
+            <form action="http://localhost:9999/.netlify/functions/server/order" method="POST" enctype="multipart/form-data">
             <!-- <form> -->
                 <div class="form-group">
                     <label for="cardName">Cardholder Name</label>
@@ -172,7 +172,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 var productID;
 
-fetch(`http://localhost:9090/product/${id}`)
+fetch(`http://localhost:9999/.netlify/functions/server/product/${id}`)
 .then(res => res.json())
 .then(res => {
   document.getElementById("productName").innerHTML = res["productName"]
@@ -200,7 +200,7 @@ function postData(){
                 "payPrice": payPrice
             }
 
-            fetch("http://localhost:9090/order", {
+            fetch("http://localhost:9999/.netlify/functions/server/order", {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json',
@@ -223,7 +223,7 @@ const shiping = 50;
 
 async function fetchProductById(productId) {
     try {
-        const response = await fetch(`http://localhost:9090/product/${id}`); 
+        const response = await fetch(`http://localhost:9999/.netlify/functions/server/product/${id}`); 
         const product = await response.json();
 
         if (product && product.price) {
